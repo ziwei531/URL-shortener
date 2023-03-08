@@ -10,11 +10,19 @@ const shortid = require("shortid");
 
 //mongoose set up
 const mongoose = require("mongoose");
-main()
-	.then(() => console.log("Successfully connected to mongodb"))
-	.catch((err) => console.log(err));
 
-async function main() {
+// async function main() {
+// 	try {
+// 		//connection to mongodb
+// 		const c = await mongoose.connect(process.env.MONGO_URI);
+// 		console.log(`Successfully connected to ${c.connection.host}`);
+// 	} catch (err) {
+// 		console.log(err);
+// 		process.exit(1);
+// 	}
+// }
+
+const connectToDB = async () => {
 	try {
 		//connection to mongodb
 		const c = await mongoose.connect(process.env.MONGO_URI);
@@ -23,7 +31,7 @@ async function main() {
 		console.log(err);
 		process.exit(1);
 	}
-}
+};
 
 //create schema
 const urlSchema = new mongoose.Schema({
@@ -84,24 +92,8 @@ app.get("/:shortUrl", async (req, res) => {
 });
 
 let port = process.env.PORT || 5000;
-const server = app.listen(port, () => {
-	console.log(`This server is listening on port ${port}`);
-});
-
-process.once("SIGUSR2", () => {
-	// Perform any necessary cleanup here
-	server.close(() => {
-		console.log("Releasing port ${port}");
-		process.kill(process.pid, "SIGUSR2");
-	});
-});
-
-server.on("error", (err) => {
-	if (err.code === "EADDRINUSE") {
-		console.log(`Port ${port} is in use, trying another port`);
-		setTimeout(() => {
-			server.close();
-			server.listen(++port);
-		}, 1000);
-	}
-});
+connectToDB().then(() =>
+	app.listen(port, () => {
+		console.log(`This server is listening on port ${port}`);
+	})
+);
