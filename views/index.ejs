@@ -23,6 +23,8 @@
 
 				document.execCommand("copy"); // Copy the selected content to clipboard
 				document.body.removeChild(tempInput); // Remove the temporary input element from DOM
+
+				alert("Copied the text: " + tempInput.value);
 			}
 		</script>
 		<title>URl Shortener</title>
