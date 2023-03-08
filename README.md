@@ -1,10 +1,11 @@
 # URL shortener with EJS and MongoDB 2023 March
 
-# Summary 
+## Summary 
 1. Refreshed my knowledge on how to use MongoDB, Express, and EJS
 2. Learned how to implement a copy to clipboard button functionality
 3. Demonstrate that my frontend skills have not faded despite busy with university responsibilities
 
+## Description
 This is a project I've done for the purpose of refreshing my memory on how to code in the backend . As I used to learn all about the backend in MongoDB, hence, I utilized Express and EJS for this project. Below is a screenshot of the project. It has a simple frontend design that is simple and aesthetic enough (and it's in dark mode, which is my favourite). 
 
 <p align='center'>
