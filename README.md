@@ -9,6 +9,7 @@ This is a project I've done for the purpose of refreshing my memory on how to co
 ## Instruction
 1. Go to https://kind-ruby-bee-coat.cyclic.app
 2. Click on any preexisting links to quickly test the shortened links' functionality. You can also copy the links through clicking the "Copy It!" button. You will be alerted that the link has been copied. 
+3. You may also insert a link yourself so as to shorten it. The table will then reflect the new additions of the link. You can then copy and test whether it works. 
 
 Please take note that as I'm using a free hosting website thus my link, once copied, is not short at all. For example, the shortened link's short id is AmrlPOxX-, however, due to me hosting the project on a free hosting server, hence, it looks like this instead: https://kind-ruby-bee-coat.cyclic.app/AmrlPOxX-, which is not short at all. 
 
