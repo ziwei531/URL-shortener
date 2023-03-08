@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<link href="/style.css" rel="stylesheet" type="text/css" />
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -7,8 +8,51 @@
 		<title>URl Shortener</title>
 	</head>
 	<body>
-		<h1>Testing!</h1>
-		<h2>Input the Url to be shortened here</h2>
-		<input type="text" />
+		<div class="container-title">
+			<h1>URL Shortener</h1>
+		</div>
+
+		<form action="/shortUrls" method="POST" class="container-input">
+			<input
+				required
+				name="fullUrl"
+				type="text"
+				class="form-control input-url"
+				placeholder="Input the Url to be shortened here"
+			/>
+			<button type="submit" class="btn-shorten">Shorten it!</button>
+		</form>
+
+		<div class="container-table">
+			<table>
+				<thead>
+					<tr>
+						<th>Original URL</th>
+						<th>Shortened URL</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- <tr>
+						<td>https://www.google.com</td>
+						<td>http://localhost:3000/1</td>
+					</tr>
+					<tr>
+						<td>https://www.google.com</td>
+						<td>http://localhost:3000/1</td>
+					</tr> -->
+
+					<% URL.forEach(url => {%>
+					<tr>
+						<td><a href="<%= url.originalURL %>"><%= url.originalURL %></a></td>
+						<td>
+							<a href="<%= url.shortURL %>" target="”_blank”"
+								><%= url.shortURL %></a
+							>
+						</td>
+					</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
 	</body>
 </html>
