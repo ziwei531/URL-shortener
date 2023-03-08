@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const res = require("express/lib/response");
 const app = express();
@@ -6,8 +7,6 @@ app.use(express.static(__dirname + "/public"));
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 const shortid = require("shortid");
-const uri =
-	"mongodb+srv://ziwei531:u3cG96LiJ171CWlk@cluster0.rtpncsr.mongodb.net/test";
 
 //mongoose set up
 const mongoose = require("mongoose");
@@ -16,7 +15,14 @@ main()
 	.catch((err) => console.log(err));
 
 async function main() {
-	await mongoose.connect(uri);
+	try {
+		//connection to mongodb
+		const c = await mongoose.connect(process.env.MONGO_URI);
+		console.log(`Successfully connected to ${c.connection.host}`);
+	} catch (err) {
+		console.log(err);
+		process.exit(1);
+	}
 }
 
 //create schema
