@@ -43,6 +43,29 @@ h1 {
 	border-radius: 5px;
 	cursor: pointer;
 }
+
+.copy {
+	background: #e25311;
+	float: right;
+	background: -webkit-linear-gradient(to right, #e25311, #f08080);
+	background: linear-gradient(to right, #e25311, #f08080);
+	border: none;
+	color: #fff;
+	padding: 0.5rem;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1rem;
+	font-family: "Poppins", sans-serif;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.copy:hover {
+	outline: none;
+	box-shadow: 0px 0px 20px #f08080;
+}
+
 /* make the btn-shorten glow and have animation when hovered */
 .btn-shorten:hover {
 	outline: none;

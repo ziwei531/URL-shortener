@@ -11,17 +11,6 @@ const shortid = require("shortid");
 //mongoose set up
 const mongoose = require("mongoose");
 
-// async function main() {
-// 	try {
-// 		//connection to mongodb
-// 		const c = await mongoose.connect(process.env.MONGO_URI);
-// 		console.log(`Successfully connected to ${c.connection.host}`);
-// 	} catch (err) {
-// 		console.log(err);
-// 		process.exit(1);
-// 	}
-// }
-
 const connectToDB = async () => {
 	try {
 		//connection to mongodb
@@ -52,8 +41,9 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/", async (req, res) => {
 	try {
+		const baseUrl = `${req.protocol}://${req.get("host")}`;
 		const URL = await Url.find();
-		res.render("index", { URL: URL });
+		res.render("index", { URL: URL, baseUrl: baseUrl });
 	} catch (error) {
 		console.log(error);
 	}
@@ -62,16 +52,20 @@ app.get("/", async (req, res) => {
 //POST request for url submission
 app.post("/shortUrls", async (req, res) => {
 	try {
-		//create a new url
-		const originalURL = req.body.fullUrl;
-		const shortURL = shortid.generate();
-		const url = new Url({
-			originalURL: originalURL,
-			shortURL: shortURL,
-		});
-		//save the url to the database
-		await url.save();
-		res.redirect("/");
+		if (req.body.fullUrl == "") {
+			return res.sendStatus(404);
+		} else {
+			//create a new url
+			const originalURL = req.body.fullUrl;
+			const shortURL = shortid.generate();
+			const url = new Url({
+				originalURL: originalURL,
+				shortURL: shortURL,
+			});
+			//save the url to the database
+			await url.save();
+			res.redirect("/");
+		}
 	} catch (error) {
 		console.log(error);
 	}

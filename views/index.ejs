@@ -5,6 +5,26 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			src="https://kit.fontawesome.com/e2cb0c37b0.js"
+			crossorigin="anonymous"
+		></script>
+		<script>
+			//write a function that copies an element to clipboard in pure javascript
+			function copyToClipboard(e) {
+				let tempEle = event.target.parentElement.querySelector("a");
+				let tempInput = document.createElement("input");
+				tempInput.value = tempEle.href;
+				document.body.appendChild(tempInput);
+
+				// select and copy the text
+				tempInput.select();
+				tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+				document.execCommand("copy"); // Copy the selected content to clipboard
+				document.body.removeChild(tempInput); // Remove the temporary input element from DOM
+			}
+		</script>
 		<title>URl Shortener</title>
 	</head>
 	<body>
@@ -39,6 +59,9 @@
 							<a href="<%= url.shortURL %>" target="”_blank”"
 								><%= url.shortURL %></a
 							>
+							<button class="copy" onclick="copyToClipboard(event)">
+								Copy It!
+							</button>
 						</td>
 					</tr>
 					<% }) %>
