@@ -6,3 +6,5 @@ This is a project I've done for the purpose of refreshing my memory on how to co
   <img src="https://i.imgur.com/opESDOw.png" />
  </p>
 
+## Instruction
+Click on the shortened URL to be redirected to the original link's website. 
