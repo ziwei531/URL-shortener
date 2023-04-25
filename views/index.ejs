@@ -9,24 +9,7 @@
 			src="https://kit.fontawesome.com/e2cb0c37b0.js"
 			crossorigin="anonymous"
 		></script>
-		<script>
-			//write a function that copies an element to clipboard in pure javascript
-			function copyToClipboard(e) {
-				let tempEle = event.target.parentElement.querySelector("a");
-				let tempInput = document.createElement("input");
-				tempInput.value = tempEle.href;
-				document.body.appendChild(tempInput);
 
-				// select and copy the text
-				tempInput.select();
-				tempInput.setSelectionRange(0, 99999); // For mobile devices
-
-				document.execCommand("copy"); // Copy the selected content to clipboard
-				document.body.removeChild(tempInput); // Remove the temporary input element from DOM
-
-				alert("Copied the text: " + tempInput.value);
-			}
-		</script>
 		<title>URl Shortener</title>
 	</head>
 	<body>
@@ -42,6 +25,7 @@
 				class="form-control input-url"
 				placeholder="Input the Url to be shortened here"
 			/>
+			<p class="error">Please enter a valid URL</p>
 			<button type="submit" class="btn-shorten">Shorten it!</button>
 		</form>
 
@@ -71,4 +55,60 @@
 			</table>
 		</div>
 	</body>
+
+	<script>
+		//write a function that copies an element to clipboard in pure javascript
+		function copyToClipboard(e) {
+			let tempEle = event.target.parentElement.querySelector("a");
+			let tempInput = document.createElement("input");
+			tempInput.value = tempEle.href;
+			document.body.appendChild(tempInput);
+
+			// select and copy the text
+			tempInput.select();
+			tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+			document.execCommand("copy"); // Copy the selected content to clipboard
+			document.body.removeChild(tempInput); // Remove the temporary input element from DOM
+
+			alert("Copied the text: " + tempInput.value);
+		}
+
+		document.addEventListener("DOMContentLoaded", () => {
+			document.addEventListener("input", checkValidURL);
+		});
+
+		const error = document.querySelector(".error");
+		const button = document.querySelector(".btn-shorten");
+		function checkValidURL(event) {
+			const url = event.target.value;
+			const urlRegex =
+				/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+
+			if (urlRegex.test(url)) {
+				// valid
+
+				error.style.display = "none";
+				error.style.visibility = "hidden";
+
+				button.disabled = false;
+				button.style.cursor = "pointer";
+				button.classList.remove("btn-shorten-disabled");
+				button.classList.add("btn-shorten");
+
+				console.log("valid");
+			} else {
+				// not valid
+				error.style.display = "block";
+				error.style.visibility = "visible";
+
+				button.disabled = true;
+				button.style.cursor = "no-drop";
+				button.classList.add("btn-shorten-disabled");
+				button.classList.remove("btn-shorten");
+
+				console.log("invalid");
+			}
+		}
+	</script>
 </html>

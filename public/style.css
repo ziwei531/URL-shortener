@@ -28,6 +28,22 @@ h1 {
 }
 
 /* create a button with a gradient background */
+
+.btn-shorten-disabled {
+	background-color: grey;
+	cursor: no-drop;
+	border: none;
+	color: #fff;
+	padding: 1rem 2rem;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1rem;
+	font-family: "Poppins", sans-serif;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
 .btn-shorten {
 	background: #e25311;
 	background: -webkit-linear-gradient(to right, #e25311, #f08080);
@@ -87,6 +103,12 @@ h1 {
 	outline: none;
 	border-bottom: 2px solid #f08080;
 	box-shadow: 0px 1px #f08080;
+}
+
+.error {
+	color: red;
+	display: none;
+	padding-bottom: 1rem;
 }
 
 .container-title {
